@@ -40,7 +40,8 @@ const createChicken = async (req, res) => {
   }
 };
 
-// Mettre à jour un Chicken
+
+// Mettre à jour un Chicken (PUT)
 const updateChicken = async (req, res) => {
   const { id } = req.params;
   const { name, birthday, weight, steps, isRunning } = req.body;
@@ -56,6 +57,25 @@ const updateChicken = async (req, res) => {
     res.status(200).json(chicken);
   } catch (error) {
     res.status(400).json({ error: 'Erreur lors de la mise à jour du Chicken.' });
+  }
+};
+
+// Mettre à jour partiellement un Chicken (PATCH)
+const partialUpdateChicken = async (req, res) => {
+  const { id } = req.params;
+  const updateFields = req.body;
+  try {
+    const chicken = await Chicken.findByIdAndUpdate(
+      id,
+      updateFields,
+      { new: true }
+    );
+    if (!chicken) {
+      return res.status(404).json({ message: 'Chicken non trouvé.' });
+    }
+    res.status(200).json(chicken);
+  } catch (error) {
+    res.status(400).json({ error: 'Erreur lors de la mise à jour partielle du Chicken.' });
   }
 };
 
@@ -114,6 +134,7 @@ module.exports = {
   getChickenById,
   createChicken,
   updateChicken,
+  partialUpdateChicken,
   deleteChicken,
   runChicken,
   createChickenWithFarmyard

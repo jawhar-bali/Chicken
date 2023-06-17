@@ -11,8 +11,11 @@ router.get('/:id', chickenController.getChickenById);
 // créer un nouveau Chicken
 router.post('/', chickenController.createChicken);
 
+// mettre à jour un Chicken (PUT)
+router.put('/:id', chickenController.updateChicken);
+
 // mettre à jour un Chicken (PATCH)
-router.patch('/:id', chickenController.updateChicken);
+router.patch('/:id', chickenController.partialUpdateChicken);
 
 // supprimer un Chicken
 router.delete('/:id', chickenController.deleteChicken);
