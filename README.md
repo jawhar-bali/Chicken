@@ -80,7 +80,7 @@ Réponse
 - Corps de la réponse : Objet `Chicken` créé.
 
 *********** Met à jour un chicken existant (PUT)**************
-PUThttp://localhost:5000/chicken/:id
+PUT  http://localhost:5000/chicken/:id
 Paramètres de requête
 - `id` : ID du chicken (dans l'URL).
 Corps de la requête
